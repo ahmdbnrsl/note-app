@@ -1,0 +1,12 @@
+import Auth from '.././components/layouts/AuthLayouts.jsx';
+import Register from '.././components/layouts/FormSignup.jsx'
+
+export default () => {
+  return (
+    <div className="w-full min-h-screen bg-black flex justify-center items-center p-5">
+      <Auth type="Register">
+        <Register/>
+      </Auth>
+    </div>
+  )
+}
