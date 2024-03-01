@@ -21,9 +21,9 @@ export default () => {
     document.addEventListener('invalid', (() => {
       return (e) => {
         e.preventDefault();
-        if (_(".username").value === '' && _('.username').value.length < 4) {
+        if (_(".username").value === '' || _('.username').value.length < 4) {
           _(".username").focus();
-        } else if (_(".password").value === '' && _('.password').value.length < 4) {
+        } else if (_(".password").value === '' || _('.password').value.length < 4) {
           _(".password").focus();
         } else {
           _(".confirm").focus();
