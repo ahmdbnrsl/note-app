@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import sign from 'jwt-encode'
+import sign from 'jwt-encode';
+import { jwtDecode } from 'jwt-decode';
 import Input from '.././fragments/Inputs.jsx';
 import Button from '.././elements/Button.jsx';
 import Loading from '.././elements/Loading.jsx'
