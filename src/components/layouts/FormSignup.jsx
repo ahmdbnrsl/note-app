@@ -26,7 +26,7 @@ export default () => {
           _(".username").focus();
         } else if (_(".password").value === '' || _('.password').value.length < 4) {
           _(".password").focus();
-        } else {
+        } else if (_(".confirm").value !== _('.password').value) {
           _(".confirm").focus();
         }
       };
