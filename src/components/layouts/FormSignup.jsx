@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import sign from 'jwt-encode'
 import Input from '.././fragments/Inputs.jsx';
 import Button from '.././elements/Button.jsx';
@@ -17,6 +17,20 @@ export default () => {
       setLoginFailed('');
     }
   }
+  useEffect(() => {
+    document.addEventListener('invalid', (() => {
+      return (e) => {
+        e.preventDefault();
+        if (_(".username").value === '') {
+          _(".username").focus();
+        } else if (_(".password").value === '') {
+          _(".password").focus();
+        } else {
+          _(".confirm").focus();
+        }
+      };
+    })(), true);
+  }, []);
   const HandleSubmit = (e) => {
     e.preventDefault();
     if (_('.confirm').value === _('.password').value && e.target.username.value !== '' && e.target.password.value !== '') {
@@ -29,7 +43,7 @@ export default () => {
       _('.load').classList.toggle('hidden');
       getUser(userInfoEnc, (data) => {
         if(data !== null) {
-          setLoginFailed('username is already exist');
+          setLoginFailed('username or password is already exist');
           _('.submiter').classList.toggle('hidden');
           _('.load').classList.toggle('hidden');
         } else {
