@@ -10,6 +10,12 @@ export default () => {
   const _ = (e) => document.querySelector(e);
   const [loginFailed, setLoginFailed] = useState('');
   const [success, setSuccess] = useState('');
+  const [usernameText, setUsernameText] = useState('username');
+  const [passwordText, setPasswordText] = useState('password');
+  const [usernameColor, setUsernameColor] = useState('text-slate-400');
+  const [passwordColor, setPasswordColor] = useState('text-slate-400');
+  const [usernameBorder, setUsernameBorder] = useState('border-gray-500 focus:border-blue-500 active:border-blue-500');
+  const [passwordBorder, setPasswordBorder] = useState('border-gray-500 focus:border-blue-500 active:border-blue-500');
   const secret = 'secret';
   useEffect(() => {
     const token = localStorage.getItem('notesqu_token')
@@ -30,16 +36,26 @@ export default () => {
   }, []);
   const UserChange = (e) => {
     if(e.target.value.length < 4) {
-      setLoginFailed('username must be ' + e.target.value.length + ' of 4 characters');
-    } else {
+      setUsernameText('username must be ' + e.target.value.length + ' of 4 characters');
+      setUsernameColor('text-red-500');
+      setUsernameBorder('border-red-500 focus:border-red-500 active:border-red-500');
       setLoginFailed('');
+    } else {
+      setUsernameText('username');
+      setUsernameColor('text-slate-400')
+      setUsernameBorder('border-gray-500 focus:border-blue-500 active:border-blue-500')
     }
   }
   const PasswordChange = (e) => {
     if(e.target.value.length < 8) {
-      setLoginFailed('password must be ' + e.target.value.length + ' of 8 characters');
-    } else {
+      setPasswordText('password must be ' + e.target.value.length + ' of 8 characters');
+      setPasswordColor('text-red-500');
+      setPasswordBorder('border-red-500 focus:border-red-500 active:border-red-500');
       setLoginFailed('');
+    } else {
+      setPasswordText('password');
+      setPasswordColor('text-slate-400');
+      setPasswordBorder('border-gray-500 focus:border-blue-500 active:border-blue-500')
     }
   }
   const HandleSubmit = (e) => {
@@ -70,8 +86,8 @@ export default () => {
     <form onSubmit={HandleSubmit}>
       {loginFailed && <p className="mt-3 text-red-500 text-sm font-medium"><i className="fa-solid fa-triangle-exclamation"></i>{" "}{loginFailed}</p>}
       {success && <p className="mt-3 text-green-500 text-sm font-medium"><i className="fa-solid fa-circle-check"></i>{" "}{success}</p>}
-      <Input change={UserChange} length="4" type="text" globalName="username">insert username here...</Input>
-      <Input change={PasswordChange} length="8" type="password" globalName="password">insert password here...</Input>
+      <Input change={UserChange} length="4" type="text" globalName="username" textLabel={usernameText} labelColor={usernameColor} inputBorder={usernameBorder}>insert username here...</Input>
+      <Input change={PasswordChange} length="8" type="password" globalName="password" textLabel={passwordText} labelColor={passwordColor} inputBorder={passwordBorder}>insert password here...</Input>
       <Button opsional="submiter">Login</Button>
       <Button isdisable={true} opsional="load hidden"><Loading/>Loging in...</Button>
     </form>
