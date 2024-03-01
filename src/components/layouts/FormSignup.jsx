@@ -11,9 +11,23 @@ export default () => {
   const secret = 'secret';
   const [success, setSuccess] = useState('');
   const [loginFailed, setLoginFailed] = useState('');
-  const HandleChange = () => {
-    if(_('.confirm').value !== _('.password').value) {
+  const HandleChange = (e) => {
+    if(e.target.value !== _('.password').value) {
       setLoginFailed('confirm password is not suitable');
+    } else {
+      setLoginFailed('');
+    }
+  }
+  const UserChange = (e) => {
+    if(e.target.value.length < 4) {
+      setLoginFailed('username must be ' + e.target.value.length + ' of 4 characters');
+    } else {
+      setLoginFailed('');
+    }
+  }
+  const PasswordChange = (e) => {
+    if(e.target.value.length < 8) {
+      setLoginFailed('password must be ' + e.target.value.length + ' of 8 characters');
     } else {
       setLoginFailed('');
     }
@@ -24,7 +38,7 @@ export default () => {
         e.preventDefault();
         if (_(".username").value === '' || _('.username').value.length < 4) {
           _(".username").focus();
-        } else if (_(".password").value === '' || _('.password').value.length < 4) {
+        } else if (_(".password").value === '' || _('.password').value.length < 8) {
           _(".password").focus();
         } else if (_(".confirm").value !== _('.password').value) {
           _(".confirm").focus();
@@ -44,7 +58,7 @@ export default () => {
       _('.load').classList.toggle('hidden');
       getUser(userInfoEnc, (data) => {
         if(data !== null) {
-          setLoginFailed('username or password is already exist');
+          setLoginFailed('username is already exist');
           _('.submiter').classList.toggle('hidden');
           _('.load').classList.toggle('hidden');
         } else {
@@ -65,9 +79,9 @@ export default () => {
     <form onSubmit={HandleSubmit}>
       {loginFailed && <p className="mt-3 text-red-500 text-sm font-medium"><i className="fa-solid fa-triangle-exclamation"></i>{" "}{loginFailed}</p>}
       {success && <p className="mt-3 text-green-500 text-sm font-medium"><i className="fa-solid fa-circle-check"></i>{" "}{success}</p>}
-      <Input type="text" globalName="username">insert username here...</Input>
-      <Input type="password" globalName="password">insert password here...</Input>
-      <Input type="password" globalName="confirm password" change={HandleChange} opsional="cp">confirm your password</Input>
+      <Input type="text" globalName="username" length="4" change={UserChange}>insert username here...</Input>
+      <Input type="password" globalName="password" change={PasswordChange} length="8">insert password here...</Input>
+      <Input type="password" globalName="confirm password" change={HandleChange} opsional="cp" length="8">confirm your password</Input>
       <Button opsional="submiter">Create account</Button>
       <Button isdisable={true} opsional="load hidden"><Loading/>{" "}Creating your account...</Button>
     </form>
