@@ -63,8 +63,8 @@ export default () => {
   };
   return (
     <form onSubmit={HandleSubmit}>
-      {loginFailed && <p className="mt-3 text-red-500 text-sm font-medium"><i className="fa-solid fa-triangle-exclamation">{" "}{loginFailed}</p>}
-      {success && <p className="mt-3 text-green-500 text-sm font-medium"><i className="fa-solid fa-circle-check">{" "}{success}</p>}
+      {loginFailed && <p className="mt-3 text-red-500 text-sm font-medium"><i className="fa-solid fa-triangle-exclamation"></i>{" "}{loginFailed}</p>}
+      {success && <p className="mt-3 text-green-500 text-sm font-medium"><i className="fa-solid fa-circle-check"></i>{" "}{success}</p>}
       <Input type="text" globalName="username">insert username here...</Input>
       <Input type="password" globalName="password">insert password here...</Input>
       <Input type="password" globalName="confirm password" change={HandleChange} opsional="cp">confirm your password</Input>
