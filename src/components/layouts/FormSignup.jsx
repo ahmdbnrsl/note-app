@@ -33,6 +33,12 @@ export default () => {
     }
   }
   useEffect(() => {
+    const token = localStorage.getItem('notesqu_token')
+    if (token) {
+      window.location.href = '/';
+    }
+  }, []);
+  useEffect(() => {
     document.addEventListener('invalid', (() => {
       return (e) => {
         e.preventDefault();
