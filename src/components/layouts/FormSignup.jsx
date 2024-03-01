@@ -10,11 +10,9 @@ export default () => {
   const secret = 'secret';
   const [success, setSuccess] = useState('');
   const [loginFailed, setLoginFailed] = useState('');
-  const [existUser, setExistUser] = useState('');
   const HandleChange = () => {
     if(_('.confirm').value !== _('.password').value) {
       setLoginFailed('confirm password is not suitable');
-      setExistUser('');
     } else {
       setLoginFailed('');
     }
@@ -31,14 +29,12 @@ export default () => {
       _('.load').classList.toggle('hidden');
       getUser(userInfoEnc, (data) => {
         if(data !== null) {
-          setExistUser('username is already exist');
-          setLoginFailed('');
+          setLoginFailed('username is already exist');
           _('.submiter').classList.toggle('hidden');
           _('.load').classList.toggle('hidden');
         } else {
           addUser(userInfo.username, userInfo.password, () => {
             setLoginFailed('');
-            setExistUser('');
             setSuccess('account successfully created!');
             _('.submiter').classList.toggle('hidden');
             _('.load').classList.toggle('hidden');
@@ -53,7 +49,6 @@ export default () => {
   return (
     <form onSubmit={HandleSubmit}>
       {loginFailed && <p className="mt-3 text-red-500 text-sm font-medium">{loginFailed}</p>}
-      {existUser && <p className="mt-3 text-red-500 text-sm font-medium">{existUser}</p>}
       {success && <p className="mt-3 text-green-500 text-sm font-medium">{success}</p>}
       <Input type="text" globalName="username">insert username here...</Input>
       <Input type="password" globalName="password">insert password here...</Input>
