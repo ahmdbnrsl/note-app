@@ -46,3 +46,16 @@ export const deleteNotes = (callback) => {
   .then(res => console.log('success'))
   .catch(err => console.error(err));
 }
+
+export const updateNotes = (callback) => {
+  const time = date + ' at ' + hour + ':' + minute;
+  const data = callback(time);
+  const {token, notes, index, edited} = data;
+  notes.splice(index, 1, edited);
+  axios.put('https://database-notes-apo-benirusli.vercel.app/users/editnotes', {
+    token,
+    notes
+  })
+  .then(res => console.log(res.data))
+  .catch(err => console.error(err));
+}

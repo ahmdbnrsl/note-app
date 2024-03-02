@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-export default ({username, totalNotes}) => {
+export default ({username, ids}) => {
   return (
     <nav className="p-5 w-full fixed top-0">
       <div className="pl-4 py-1 pr-1 bg-black border border-gray-700 rounded-3xl flex justify-between items-center">
@@ -8,7 +8,7 @@ export default ({username, totalNotes}) => {
           <i className="fa-solid fa-user text-xl text-blue-500"></i>
           <div>
             <p className="text-sm font-medium text-white">{username}</p>
-            <p className="text-xs text-slate-400 font-normal">total notes : {totalNotes}</p>
+            <p className="text-xs text-slate-400 font-normal">{ids}</p>
           </div>
         </Link>
       </div>

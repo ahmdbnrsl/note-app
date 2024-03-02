@@ -1,7 +1,8 @@
 import { deleteNotes } from '../.././service/db.service.js';
 import {useState} from 'react';
 
-export default ({data, index, token, notes}) => {
+export default ({data, index, token, notes, showForm}) => {
+  const _ = (e) => document.querySelector(e);
   const [cek, setCek] = useState('fa-regular fa-copy');
   const HandleCopy = (text) => {
     navigator.clipboard.writeText(text);
@@ -35,7 +36,7 @@ export default ({data, index, token, notes}) => {
         }} className="h-full w-full whitespace-pre-wrap text-slate-200 font-normal text-sm font-arial">{data.notes}</pre>
       </div>
       <div className="mt-4 w-full flex flex-wrap gap-4">
-        <button className="rounded bg-gray-800 text-green-400 font-medium text-md px-4 py-0.5 hover:bg-gray-900">edit</button>
+        <button className="rounded bg-gray-800 text-green-400 font-medium text-md px-4 py-0.5 hover:bg-gray-900" onClick={() => showForm(data.title, data.notes, index)}>edit</button>
         <button className="rounded bg-gray-800 text-red-500 font-medium text-md px-4 py-0.5 hover:bg-gray-900" onClick={() => HandleDelete(index)}>delete</button>
       </div>
     </div>
