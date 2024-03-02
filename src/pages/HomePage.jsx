@@ -9,6 +9,8 @@ export default () => {
   const [username, setUsername] = useState('');
   const [totalNotes, setTotalNotes] = useState(0);
   const [notes, setNotes] = useState([]);
+  const [load, setLoad] = useState('hidden');
+  const [btn, setBtn] = useState('');
   const token = localStorage.getItem('notesqu_token');
   useEffect(() => {
     if (token) {
@@ -22,6 +24,8 @@ export default () => {
     getUser(token, (data) => {
       setTotalNotes(data.notes.length);
       setNotes(data.notes);
+      setBtn('');
+      setLoad('hidden');
     });
   });
   useEffect(() => {
@@ -37,8 +41,8 @@ export default () => {
   }, []);
   const HandleSubmit = (e) => {
     e.preventDefault();
-    _('.loading').classList.toggle('hidden');
-    _('.btn').classList.toggle('hidden');
+    setBtn('hidden');
+    setLoad('');
     addNotes((time) => {
       const notess = {
         title: e.target.title.value,
@@ -46,8 +50,6 @@ export default () => {
         edited: false,
         time
       }
-      _('.loading').classList.toggle('hidden');
-      _('.btn').classList.toggle('hidden');
       e.target.title.value = '';
       e.target.notes.value = '';
       return {
@@ -62,15 +64,15 @@ export default () => {
     <Navbar username={username} totalNotes={totalNotes}/>
     <div className="w-full min-h-screen bg-black p-5 flex flex-col items-center">
       <div className="w-full max-w-md p-3 mt-20">
-        <Form HandleSubmit={HandleSubmit} load="loading" btn="btn"/>
+        <Form HandleSubmit={HandleSubmit} load={load} btn={btn}/>
       </div>
       <div className="w-full max-w-8xl mt-8 flex flex-col items-center">
         <h1 className="text-white font-semibold text-xl">Your Notes</h1>
         <div className="w-full flex justify-center flex-wrap mt-8 gap-5">
-          {<p className="text-xl font-semibold text-slate-400">no notes found.</p> && 
+          {<p className="text-xl font-semibold text-slate-400">no notes found.</p> &&
             notes.map((data, index) => {
               return (
-                <Result data={data} index={index}/>
+                <Result notes={notes} token={token} data={data} index={index}/>
               )
             })
           }

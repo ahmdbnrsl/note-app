@@ -34,7 +34,7 @@ export default () => {
   }
   const UserChange = (e) => {
     if(e.target.value.length < 4) {
-      setUsernameText('username must be ' + e.target.value.length + ' of 4 characters');
+      setUsernameText('username must be minimal ' + e.target.value.length + ' of 4 characters');
       setUsernameColor('text-red-500');
       setUsernameBorder('border-red-500 focus:border-red-500 active:border-red-500');
       setLoginFailed('');
@@ -46,7 +46,7 @@ export default () => {
   }
   const PasswordChange = (e) => {
     if(e.target.value.length < 8) {
-      setPasswordText('password must be ' + e.target.value.length + ' of 8 characters');
+      setPasswordText('password must be minimal ' + e.target.value.length + ' of 8 characters');
       setPasswordColor('text-red-500');
       setPasswordBorder('border-red-500 focus:border-red-500 active:border-red-500');
       setLoginFailed('');
