@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './pages/HomePage.jsx';
 import Register from './pages/SignupPage.jsx';
 import Login from './pages/LoginPage.jsx';
 import './index.css';
@@ -10,7 +11,7 @@ import './fa.css';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Hello World</h1>,
+    element: <Home/>,
     errorElement: <p>404</p>
   },
   {
