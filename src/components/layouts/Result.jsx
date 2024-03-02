@@ -1,6 +1,15 @@
 import { deleteNotes } from '../.././service/db.service.js';
+import {useState} from 'react';
 
 export default ({data, index, token, notes}) => {
+  const [cek, setCek] = useState('fa-regular fa-copy');
+  const HandleCopy = (text) => {
+    navigator.clipboard.writeText(text);
+    setCek('fa-solid fa-check text-green-400');
+    setTimeout(() => {
+      setCek('fa-regular fa-copy text-white');
+    }, 500)
+  }
   const HandleDelete = (indexs) => {
     deleteNotes(() => {
       return {
@@ -16,8 +25,8 @@ export default ({data, index, token, notes}) => {
       <div><p className="h-full text-xs font-normal text-slate-400"><span className="font-medium text-white">{data.edited ? 'Edited' : 'Added'} :</span> {data.time}</p></div>
       <div><p className="h-full text-xs font-normal text-blue-400"><span className="font-medium text-white">ID :</span> notes-{index + 1 * 425 * 15 / 14}</p></div>
       <div className="w-full text-right mt-3">
-        <button className="bg-gray-800 rounded pt-2 pl-3 pr-2.5 pb-1 text-white">
-          <i className="fa-regular fa-copy"></i>
+        <button onClick={() => HandleCopy(data.notes)} className="bg-gray-800 rounded pt-2 pl-3 pr-2.5 pb-1 text-white hover:bg-gray-900">
+          <i className={cek}></i>
         </button>
       </div>
       <div className="mt-4 w-full p-4 bg-gray-800 max-h-40 rounded overflow-y-auto">
