@@ -117,7 +117,7 @@ const HomePage = () => {
         <Form HandleSubmit={HandleEdit} load={load} btn={btn} formClass={edit} textBtn="Update" textLoad={textLoad}><input type="hidden" className="hiddeninput"/></Form>
         <Form HandleSubmit={HandleSubmit} load={load} btn={btn} textBtn="Add" textLoad={textLoad} formClass={visible}/>
       </div>
-      <div className="w-full max-w-8xl mt-8 flex flex-col items-center">
+      <div className="w-full max-w-6xl mt-8 flex flex-col items-center">
         <SearchBar total={total}/>
         <div className="w-full flex justify-center flex-wrap mt-8 gap-5">
           {found && <p className="text-slate-400 text-md font-normal">{found}</p>}
