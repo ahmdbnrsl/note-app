@@ -5,6 +5,7 @@ import Navbar from '.././components/layouts/Navbar.jsx';
 import Form from '.././components/layouts/FormNotes.jsx';
 import Result from '.././components/layouts/Result.jsx';
 import SearchBar from '.././components/layouts/SearchLayout.jsx';
+import List from '.././components/layouts/ListNotesLayout.jsx';
 
 const HomePage = () => {
   const _ = (e) => document.querySelector(e);
@@ -18,6 +19,8 @@ const HomePage = () => {
   const [edit, setEdit] = useState('edit hidden');
   const [textLoad, setTextLoad] = useState('');
   const [total, setTotal] = useState(0);
+  const [search, setSearch] = useState([]);
+  const [result, setResult] = useState([]);
   const token = localStorage.getItem('notesqu_token');
   useEffect(() => {
     if (token) {
@@ -39,6 +42,7 @@ const HomePage = () => {
       } else {
         setFound('');
       }
+      
     });
   }, [notes, total]);
   useEffect(() => {
@@ -109,6 +113,24 @@ const HomePage = () => {
     _('.notes').value = notes;
     _('.hiddeninput').value = index;
   }
+  const SearchChange = (e) => {
+    const data = notes
+    const filteredData = data.filter((note) => {
+       if (e.target.value === '') {
+         return listNotes;
+       } else {
+         return note.title.toLowerCase().includes(e.target.value.toLowerCase());
+       }
+    });
+    setSearch(filteredData);
+  }
+  const listNotes = () => {
+    if(search.length !== 0) {
+      return search;
+    } else {
+      return notes;
+    }
+  }
   return (
   <>
     <Navbar username={username} ids={id}/>
@@ -118,16 +140,10 @@ const HomePage = () => {
         <Form HandleSubmit={HandleSubmit} load={load} btn={btn} textBtn="Add" textLoad={textLoad} formClass={visible}/>
       </div>
       <div className="w-full max-w-6xl mt-8 flex flex-col items-center">
-        <SearchBar total={total}/>
+        <SearchBar total={total} HandleChange={SearchChange}/>
         <div className="w-full flex justify-center flex-wrap mt-8 gap-5">
           {found && <p className="text-slate-400 text-md font-normal">{found}</p>}
-          {
-            notes.map((data, index) => {
-              return (
-                <Result notes={notes} token={token} data={data} index={index} showForm={(title, notes, index) => showForm(title, notes, index)}/>
-              )
-            })
-          }
+          <List notesData={listNotes} notes={notes} showForm={(title, notes, index) => showForm(title, notes, index)} token={token}/>
         </div>
       </div>
     </div>
