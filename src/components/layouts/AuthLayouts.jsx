@@ -20,7 +20,7 @@ const Navigation = ({type}) => {
 
 export default ({children, type}) => {
   return (
-    <div className="w-full max-w-md p-3">
+    <div className="w-full max-w-md">
       <h1 className="text-2xl font-semibold text-slate-300">{type}</h1>
       <p className="mt-1 text-sm font-medium text-slate-400">Welcome, please enter your detail!</p>
       {children}

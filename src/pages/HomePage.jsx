@@ -4,6 +4,7 @@ import { getUser, addNotes, updateNotes } from '.././service/db.service.js';
 import Navbar from '.././components/layouts/Navbar.jsx';
 import Form from '.././components/layouts/FormNotes.jsx';
 import Result from '.././components/layouts/Result.jsx';
+import SearchBar from '.././components/layouts/SearchLayout.jsx';
 
 const HomePage = () => {
   const _ = (e) => document.querySelector(e);
@@ -16,6 +17,7 @@ const HomePage = () => {
   const [visible, setVisible] = useState('utama');
   const [edit, setEdit] = useState('edit hidden');
   const [textLoad, setTextLoad] = useState('');
+  const [total, setTotal] = useState(0);
   const token = localStorage.getItem('notesqu_token');
   useEffect(() => {
     if (token) {
@@ -24,20 +26,21 @@ const HomePage = () => {
     } else {
       window.location.href = '/login';
     }
-  }, []);
+  }, [username]);
   useEffect(() => {
     getUser(token, (data) => {
       setId(data._id);
       setNotes(data.notes);
       setBtn('');
       setLoad('hidden');
+      setTotal(data.notes.length);
       if(data.notes.length === 0) {
         setFound('no notes found.');
       } else {
         setFound('');
       }
     });
-  });
+  }, [notes, total]);
   useEffect(() => {
     document.addEventListener('invalid', (() => { return (e) => {
         e.preventDefault();
@@ -110,12 +113,12 @@ const HomePage = () => {
   <>
     <Navbar username={username} ids={id}/>
     <div className="w-full min-h-screen bg-black p-5 flex flex-col items-center">
-      <div className="w-full max-w-md p-3 mt-20">
+      <div className="w-full max-w-md mt-20">
         <Form HandleSubmit={HandleEdit} load={load} btn={btn} formClass={edit} textBtn="Update" textLoad={textLoad}><input type="hidden" className="hiddeninput"/></Form>
         <Form HandleSubmit={HandleSubmit} load={load} btn={btn} textBtn="Add" textLoad={textLoad} formClass={visible}/>
       </div>
       <div className="w-full max-w-8xl mt-8 flex flex-col items-center">
-        <h1 className="text-white font-semibold text-xl">Your Notes</h1>
+        <SearchBar total={total}/>
         <div className="w-full flex justify-center flex-wrap mt-8 gap-5">
           {found && <p className="text-slate-400 text-md font-normal">{found}</p>}
           {
