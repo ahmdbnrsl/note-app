@@ -123,7 +123,7 @@ const HomePage = () => {
   return (
   <>
     <Navbar username={username} ids={id}/>
-    <div className="w-full min-h-screen bg-black p-5 flex flex-col items-center">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-950 to-cyan-950 p-5 flex flex-col items-center">
       <div className="w-full max-w-md mt-20">
         <Form HandleSubmit={HandleEdit} load={load} btn={btn} formClass={edit} textBtn="Update" textLoad={textLoad}><input type="hidden" className="hiddeninput"/></Form>
         <Form HandleSubmit={HandleSubmit} load={load} btn={btn} textBtn="Add" textLoad={textLoad} formClass={visible}/>

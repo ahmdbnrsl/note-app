@@ -2,7 +2,7 @@ import Input from '.././elements/Input.jsx';
 
 export default ({total, HandleChange}) => {
   return (
-    <div className="rounded-full bg-black sticky top-24 w-full pl-5 py-2 pr-2 flex justify-between border border-gray-700">
+    <div className="rounded-full bg-gradient-to-r from-gray-900 to-slate-950 sticky top-24 w-full pl-5 py-2 pr-2 flex justify-between border border-gray-700">
       <div>
         <h1 className="text-white font-semibold text-xl">Your Notes</h1>
         <p className="text-xs font-normal text-slate-400">total notes : {total}</p>

@@ -3,7 +3,7 @@ import Login from '.././components/layouts/FormLogin.jsx'
 
 export default () => {
   return (
-    <div className="w-full min-h-screen bg-black flex justify-center items-center p-5">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-950 to-cyan-950 flex justify-center items-center p-5">
       <Auth type="Login">
         <Login/>
       </Auth>
