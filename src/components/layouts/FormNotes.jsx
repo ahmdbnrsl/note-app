@@ -9,8 +9,8 @@ export default ({HandleSubmit, load, btn, formClass, textBtn, textLoad, children
   const [notesText, setNotesText] = useState('notes');
   const [titleColor, setTitleColor] = useState('text-slate-400');
   const [notesColor, setNotesColor] = useState('text-slate-400');
-  const [titleBorder, setTitleBorder] = useState('border-gray-500 focus:border-blue-500 active:border-blue-500');
-  const [notesBorder, setNotesBorder] = useState('border-gray-500 focus:border-blue-500 active:border-blue-500');
+  const [titleBorder, setTitleBorder] = useState('border-gray-500 focus:border-teal-500 active:border-teal-500');
+  const [notesBorder, setNotesBorder] = useState('border-gray-500 focus:border-teal-500 active:border-teal-500');
   
   const TitleChange = (e) => {
     if(e.target.value.length < 4) {
@@ -20,7 +20,7 @@ export default ({HandleSubmit, load, btn, formClass, textBtn, textLoad, children
     } else {
       setTitleText('title');
       setTitleColor('text-slate-400')
-      setTitleBorder('border-gray-500 focus:border-blue-500 active:border-blue-500')
+      setTitleBorder('border-gray-500 focus:border-teal-500 active:border-teal-500')
     }
   }
   const NotesChange = (e) => {
@@ -31,7 +31,7 @@ export default ({HandleSubmit, load, btn, formClass, textBtn, textLoad, children
     } else {
       setNotesText('notes');
       setNotesColor('text-slate-400');
-      setNotesBorder('border-gray-500 focus:border-blue-500 active:border-blue-500')
+      setNotesBorder('border-gray-500 focus:border-teal-500 active:border-teal-500')
     }
   }
   

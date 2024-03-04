@@ -17,9 +17,9 @@ export default () => {
   const [usernameColor, setUsernameColor] = useState('text-slate-400');
   const [passwordColor, setPasswordColor] = useState('text-slate-400');
   const [confirmColor, setConfirmColor] = useState('text-slate-400');
-  const [usernameBorder, setUsernameBorder] = useState('border-gray-500 focus:border-blue-500 active:border-blue-500');
-  const [passwordBorder, setPasswordBorder] = useState('border-gray-500 focus:border-blue-500 active:border-blue-500');
-  const [confirmBorder, setConfirmBorder] = useState('border-gray-500 focus:border-blue-500 active:border-blue-500');
+  const [usernameBorder, setUsernameBorder] = useState('border-gray-500 focus:border-teal-500 active:border-teal-500');
+  const [passwordBorder, setPasswordBorder] = useState('border-gray-500 focus:border-teal-500 active:border-teal-500');
+  const [confirmBorder, setConfirmBorder] = useState('border-gray-500 focus:border-teal-500 active:border-teal-500');
   const HandleChange = (e) => {
     if(e.target.value !== _('.password').value) {
       setConfirmText('confirm password is not suitable');
@@ -29,7 +29,7 @@ export default () => {
     } else {
       setConfirmText('confirm password');
       setConfirmColor('text-slate-400')
-      setConfirmBorder('border-gray-500 focus:border-blue-500 active:border-blue-500')
+      setConfirmBorder('border-gray-500 focus:border-teal-500 active:border-teal-500')
     }
   }
   const UserChange = (e) => {
@@ -41,7 +41,7 @@ export default () => {
     } else {
       setUsernameText('username');
       setUsernameColor('text-slate-400')
-      setUsernameBorder('border-gray-500 focus:border-blue-500 active:border-blue-500')
+      setUsernameBorder('border-gray-500 focus:border-teal-500 active:border-teal-500')
     }
   }
   const PasswordChange = (e) => {
@@ -53,7 +53,7 @@ export default () => {
     } else {
       setPasswordText('password');
       setPasswordColor('text-slate-400');
-      setPasswordBorder('border-gray-500 focus:border-blue-500 active:border-blue-500')
+      setPasswordBorder('border-gray-500 focus:border-teal-500 active:border-teal-500')
     }
   }
   useEffect(() => {

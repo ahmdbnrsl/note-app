@@ -14,8 +14,8 @@ export default () => {
   const [passwordText, setPasswordText] = useState('password');
   const [usernameColor, setUsernameColor] = useState('text-slate-400');
   const [passwordColor, setPasswordColor] = useState('text-slate-400');
-  const [usernameBorder, setUsernameBorder] = useState('border-gray-500 focus:border-blue-500 active:border-blue-500');
-  const [passwordBorder, setPasswordBorder] = useState('border-gray-500 focus:border-blue-500 active:border-blue-500');
+  const [usernameBorder, setUsernameBorder] = useState('border-gray-500 focus:border-teal-500 active:border-teal-500');
+  const [passwordBorder, setPasswordBorder] = useState('border-gray-500 focus:border-teal-500 active:border-teal-500');
   const secret = 'secret';
   useEffect(() => {
     const token = localStorage.getItem('notesqu_token')
@@ -43,7 +43,7 @@ export default () => {
     } else {
       setUsernameText('username');
       setUsernameColor('text-slate-400')
-      setUsernameBorder('border-gray-500 focus:border-blue-500 active:border-blue-500')
+      setUsernameBorder('border-gray-500 focus:border-teal-500 active:border-teal-500')
     }
   }
   const PasswordChange = (e) => {
@@ -55,7 +55,7 @@ export default () => {
     } else {
       setPasswordText('password');
       setPasswordColor('text-slate-400');
-      setPasswordBorder('border-gray-500 focus:border-blue-500 active:border-blue-500')
+      setPasswordBorder('border-gray-500 focus:border-teal-500 active:border-teal-500')
     }
   }
   const HandleSubmit = (e) => {
