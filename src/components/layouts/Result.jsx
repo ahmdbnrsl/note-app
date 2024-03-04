@@ -32,7 +32,7 @@ export default ({data, index, token, notes, showForm}) => {
       </div>
       <div className="mt-4 w-full p-4 bg-gray-800 max-h-40 rounded overflow-y-auto">
         <pre style={{
-          fontFamily: "arial"
+          fontFamily: '"Inter", system-ui, sans-serif'
         }} className="h-full w-full whitespace-pre-wrap text-slate-200 font-normal text-sm font-arial">{data.notes}</pre>
       </div>
       <div className="mt-4 w-full flex flex-wrap gap-4">
