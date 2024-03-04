@@ -6,7 +6,7 @@
   html {
     font-family: "Inter", system-ui, sans-serif;
   }
-  html:selection {
+  html::selection {
     color: rgba(0, 170, 255, 1);
     background-color: rgba(50, 50, 50, 1);
   }
