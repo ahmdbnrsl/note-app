@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { getUser, addNotes, updateNotes } from '.././service/db.service.js';
+import { useSearchParams } from "react-router-dom";
 import Navbar from '.././components/layouts/Navbar.jsx';
 import Form from '.././components/layouts/FormNotes.jsx';
 import Result from '.././components/layouts/Result.jsx';
@@ -9,6 +10,7 @@ import List from '.././components/layouts/ListNotesLayout.jsx';
 
 const HomePage = () => {
   const _ = (e) => document.querySelector(e);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [username, setUsername] = useState('');
   const [id, setId] = useState('');
   const [notes, setNotes] = useState([]);
@@ -19,8 +21,6 @@ const HomePage = () => {
   const [edit, setEdit] = useState('edit hidden');
   const [textLoad, setTextLoad] = useState('');
   const [total, setTotal] = useState(0);
-  const [search, setSearch] = useState([]);
-  const [result, setResult] = useState([]);
   const token = localStorage.getItem('notesqu_token');
   useEffect(() => {
     if (token) {
@@ -37,12 +37,6 @@ const HomePage = () => {
       setBtn('');
       setLoad('hidden');
       setTotal(data.notes.length);
-      if(data.notes.length === 0) {
-        setFound('no notes found.');
-      } else {
-        setFound('');
-      }
-      
     });
   }, [notes, total]);
   useEffect(() => {
@@ -114,23 +108,18 @@ const HomePage = () => {
     _('.hiddeninput').value = index;
   }
   const SearchChange = (e) => {
-    const data = notes
-    const filteredData = data.filter((note) => {
-       if (e.target.value === '') {
-         return listNotes;
-       } else {
-         return note.title.toLowerCase().includes(e.target.value.toLowerCase());
-       }
-    });
-    setSearch(filteredData);
-  }
-  const listNotes = () => {
-    if(search.length !== 0) {
-      return search;
+    if (e.target.value !== "") {
+      searchParams.set("title", e.target.value);
+      setSearchParams(searchParams);
     } else {
-      return notes;
+      searchParams.delete("title");
+      setSearchParams(searchParams);
     }
   }
+  const query = searchParams.get("title");
+  const filteredNotes = notes.filter((note) =>
+    note.title.toLowerCase().includes(query?.toLowerCase() || "")
+  );
   return (
   <>
     <Navbar username={username} ids={id}/>
@@ -142,8 +131,7 @@ const HomePage = () => {
       <div className="w-full max-w-6xl mt-8 flex flex-col items-center">
         <SearchBar total={total} HandleChange={SearchChange}/>
         <div className="w-full flex justify-center flex-wrap mt-8 gap-5">
-          {found && <p className="text-slate-400 text-md font-normal">{found}</p>}
-          <List notesData={listNotes} notes={notes} showForm={(title, notes, index) => showForm(title, notes, index)} token={token}/>
+          <List notesData={filteredNotes} notes={notes} showForm={(title, notes, index) => showForm(title, notes, index)} token={token}/>
         </div>
       </div>
     </div>

@@ -59,7 +59,7 @@ export default () => {
   useEffect(() => {
     const token = localStorage.getItem('notesqu_token')
     if (token) {
-      window.location.href = '/';
+      window.location.href = '/notes';
     }
   }, []);
   useEffect(() => {
