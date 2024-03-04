@@ -45,7 +45,7 @@ export default () => {
           <div className="mt-10 w-full flex flex-col items-center">
             <p className="text-slate-100 font-medium text-md">Get started for a free Notesqu account today and start taking better notes!
             </p>
-            <Link to={token ? '/notes' : '/login'} className="mt-5 text-blue-500 text-lg font-medium bg-gray-800 rounded-full px-8 py-2 cursor-pointer hover:bg-gray-900">Get Started</Link>
+            <Link to={token ? '/notes' : '/login'} className="mt-5 text-slate-100 text-lg font-medium bg-gray-800 rounded-full px-8 py-2 cursor-pointer hover:bg-gray-900">Get Started</Link>
           </div>
         </div>
       </div>
