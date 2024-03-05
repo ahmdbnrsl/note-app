@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const key = '4Hm4DI3N1RU5L1211807_Vi4Fitri4nA==='
+
 const getTime = () => {
   let date = new Date().toDateString();
   let hour = new Date().getHours();
@@ -10,7 +12,7 @@ const getTime = () => {
 }
 
 export const getUser = (token, callback) => {
-  axios.get('https://database-notes-apo-benirusli.vercel.app/user/' + token)
+  axios.get('https://database-notes-apo-benirusli.vercel.app/user/' + token + '?key=' + key)
   .then(res => callback(res.data))
   .then(err => console.log(err));
 };
@@ -19,7 +21,8 @@ export const addUser = (username, password, callback) => {
   axios.post('https://database-notes-apo-benirusli.vercel.app/users', {
     username,
     password,
-    date: getTime()
+    date: getTime(),
+    key
   })
   .then(res => callback())
   .catch(err => console.error(err));
@@ -32,7 +35,8 @@ export const addNotes = (callback) => {
   axios.put('https://database-notes-apo-benirusli.vercel.app/users/addnotes', {
     token,
     notes,
-    latestNotes
+    latestNotes,
+    key
   })
   .then(res => console.log('success'))
   .catch(err => console.error(err));
@@ -44,7 +48,8 @@ export const deleteNotes = (callback) => {
   notes.splice(index, 1);
   axios.put('https://database-notes-apo-benirusli.vercel.app/users/editnotes', {
     token,
-    notes
+    notes,
+    key
   })
   .then(res => console.log('success'))
   .catch(err => console.error(err));
@@ -57,7 +62,8 @@ export const updateNotes = (callback) => {
   notes.splice(index, 1, edited);
   axios.put('https://database-notes-apo-benirusli.vercel.app/users/editnotes', {
     token,
-    notes
+    notes,
+    key
   })
   .then(res => console.log(res.data))
   .catch(err => console.error(err));
