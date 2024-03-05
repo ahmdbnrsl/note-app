@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const key = '4Hm4DI3N1RU5L1211807_Vi4Fitri4nA==='
+const key = import.meta.env.VITE_ACCESS_KEY;
 
 const getTime = () => {
   let date = new Date().toDateString();
