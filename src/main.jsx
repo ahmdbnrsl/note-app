@@ -5,6 +5,7 @@ import Home from './pages/HomePage.jsx';
 import Notes from './pages/NotesPage.jsx';
 import Register from './pages/SignupPage.jsx';
 import Login from './pages/LoginPage.jsx';
+import Account from './pages/Account.jsx';
 import './index.css';
 import './fa.css';
 
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login/>
+  },
+  {
+    path: "/account",
+    element: <Account/>
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
