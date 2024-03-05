@@ -18,7 +18,7 @@ export default () => {
   return (
     <>
       <Nav ids={id ? id : ''} username={username ? username : ''}/>
-      <div className="w-full min-h-screen p-5 flex justify-center bg-gradient-to-br from-slate-950 to-cyan-950">
+      <div className="w-full min-h-screen px-5 pt-5 pb-12 flex justify-center bg-gradient-to-br from-slate-950 to-cyan-950">
         <div className="w-full max-w-6xl mt-20">
           <h1 className="text-2xl font-semibold text-slate-100">Introduction</h1>
           <div className="mt-3">
