@@ -101,6 +101,10 @@ const HomePage = () => {
     });
   }
   const showForm = (title, notes, index) => {
+    window.scrollTo({ 
+      top: 0,  
+      behavior: 'smooth'
+    });
     _('.utama').classList.toggle('hidden');
     _('.edit').classList.toggle('hidden');
     _('.title').value = title;
