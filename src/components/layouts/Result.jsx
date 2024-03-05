@@ -21,7 +21,7 @@ export default ({data, index, token, notes, showForm}) => {
     })
   }
   return (
-    <div className="h-fit p-4 w-full xl:max-w-lg border border-gray-700 rounded shadow shadow-xl shadow-gray-900 bg-gradient-to-b from-gray-800 to-black">
+    <div className={`h-fit p-4 w-full xl:max-w-lg border border-gray-700 rounded shadow shadow-xl shadow-gray-900 bg-gradient-to-${index % 2 != 0 ? 'b' : 't'} from-gray-900 to-slate-950 `}>
       <div><h1 className="h-full text-xl text-white font-semibold">{data.title}</h1></div>
       <div><p className="h-full text-xs font-normal text-slate-400"><span className="font-medium text-white">{data.edited ? 'Edited' : 'Added'} :</span> {data.time}</p></div>
       <div><p className="h-full text-xs font-normal text-teal-400"><span className="font-medium text-white">ID :</span> notes-{index + 1 * 425 * 15 / 14}</p></div>
