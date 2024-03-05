@@ -1,29 +1,32 @@
 import axios from "axios";
 
+const getTime = () => {
+  let date = new Date().toDateString();
+  let hour = new Date().getHours();
+  let minute = new Date().getMinutes();   
+  if (hour < 10) hour = "0" + hour;
+  if (minute < 10) minute = "0" + minute;
+  return date + ' at ' + hour + ':' + minute;
+}
+
 export const getUser = (token, callback) => {
   axios.get('https://database-notes-apo-benirusli.vercel.app/user/' + token)
   .then(res => callback(res.data))
   .then(err => console.log(err));
 };
 
-let date = new Date().toDateString();
-let hour = new Date().getHours();
-let minute = new Date().getMinutes();   
-if (hour < 10) hour = "0" + hour;
-if (minute < 10) minute = "0" + minute;
-
 export const addUser = (username, password, callback) => {
   axios.post('https://database-notes-apo-benirusli.vercel.app/users', {
     username,
     password,
-    date: date + ' at ' + hour + ':' + minute
+    date: getTime()
   })
   .then(res => callback())
   .catch(err => console.error(err));
 };
 
 export const addNotes = (callback) => {
-  const time = date + ' at ' + hour + ':' + minute;
+  const time = getTime();
   const data = callback(time);
   const {token, notes, latestNotes} = data;
   axios.put('https://database-notes-apo-benirusli.vercel.app/users/addnotes', {
@@ -48,7 +51,7 @@ export const deleteNotes = (callback) => {
 }
 
 export const updateNotes = (callback) => {
-  const time = date + ' at ' + hour + ':' + minute;
+  const time = getTime();
   const data = callback(time);
   const {token, notes, index, edited} = data;
   notes.splice(index, 1, edited);
