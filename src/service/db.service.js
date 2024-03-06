@@ -30,7 +30,7 @@ export const addUser = (username, password, callback) => {
 
 export const deleteUser = (callback) => {
   const token = callback();
-  axios.delete('https://database-notes-apo-benirusli.vercel.app/users' + token + '?key=' + key)
+  axios.delete('https://database-notes-apo-benirusli.vercel.app/users/' + token + '?key=' + key)
   .then(res => console.log(res.data))
   .then(err => console.error(err));
 }

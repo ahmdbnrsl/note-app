@@ -9,6 +9,8 @@ export default () => {
   const [length, setLength] = useState(0);
   const [id, setId] = useState('');
   const [cek, setCek] = useState('fa-regular fa-copy');
+  const [cek2, setCek2] = useState('fa-regular fa-copy');
+  const [cek3, setCek3] = useState('fa-regular fa-copy');
   const HandleCopy = (text) => {
     navigator.clipboard.writeText(text);
     setCek('fa-solid fa-check text-teal-400');
@@ -16,10 +18,24 @@ export default () => {
       setCek('fa-regular fa-copy');
     }, 500)
   }
+  const HandleCopy2 = (text) => {
+    navigator.clipboard.writeText(text);
+    setCek2('fa-solid fa-check text-teal-400');
+    setTimeout(() => {
+      setCek2('fa-regular fa-copy');
+    }, 500)
+  }
+  const HandleCopy3 = (text) => {
+    navigator.clipboard.writeText(text);
+    setCek3('fa-solid fa-check text-teal-400');
+    setTimeout(() => {
+      setCek3('fa-regular fa-copy');
+    }, 500)
+  }
   const HandleDelete = () => {
-    localStorage.removeItem('notesqu_token');
     deleteUser(() => {
       window.location.href = '/register'
+      localStorage.removeItem('notesqu_token');
       return token;
     })
   }
@@ -53,12 +69,12 @@ export default () => {
         <p className="mt-3 text-slate-300 font-medium text-md pl-5">Password</p>
         <div className="mt-1 w-full bg-gray-700 rounded border border-gray-700 flex justify-between overflow-hidden">
           <p className="text-white text-lg font-medium px-5 py-2">{user.password}</p>
-          <button className="text-teal-400 text-lg py-2 bg-gray-800 px-5" onClick={() => HandleCopy(user.password)}><i className={cek}></i></button>
+          <button className="text-teal-400 text-lg py-2 bg-gray-800 px-5" onClick={() => HandleCopy2(user.password)}><i className={cek2}></i></button>
         </div>
         <p className="mt-3 text-slate-300 font-medium text-md pl-5">ID</p>
         <div className="mt-1 w-full bg-gray-700 rounded border border-gray-700 flex justify-between overflow-hidden">
           <p className="text-white text-lg font-medium px-5 py-2">{id}</p>
-          <button className="text-teal-400 text-lg py-2 bg-gray-800 px-5" onClick={() => HandleCopy(id)}><i className={cek}></i></button>
+          <button className="text-teal-400 text-lg py-2 bg-gray-800 px-5" onClick={() => HandleCopy3(id)}><i className={cek3}></i></button>
         </div>
         <div className="mt-5 w-full flex justify-between gap-3">
           <div className="w-1/2 p-3 bg-gray-800 rounded flex flex-col justify-center items-center border border-gray-700">
