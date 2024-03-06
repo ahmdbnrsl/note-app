@@ -28,6 +28,13 @@ export const addUser = (username, password, callback) => {
   .catch(err => console.error(err));
 };
 
+export const deleteUser = (callback) => {
+  const token = callback();
+  axios.delete('https://database-notes-apo-benirusli.vercel.app/users' + token + '?key=' + key)
+  .then(res => console.log(res.data))
+  .then(err => console.error(err));
+}
+
 export const addNotes = (callback) => {
   const time = getTime();
   const data = callback(time);

@@ -74,7 +74,7 @@ export default () => {
         _('.submiter').classList.toggle('hidden');
         _('.load').classList.toggle('hidden');
         localStorage.setItem('notesqu_token', data.token);
-        window.location.href = '/';
+        window.location.href = '/notes';
       } else {
         setLoginFailed('username or password is incorrect');
         _('.submiter').classList.toggle('hidden');
