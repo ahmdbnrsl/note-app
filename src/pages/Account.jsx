@@ -34,10 +34,10 @@ export default () => {
   }
   const HandleDelete = () => {
     deleteUser(() => {
-      window.location.href = '/register'
-      localStorage.removeItem('notesqu_token');
       return token;
-    })
+    });
+    window.location.href = '/register';
+    localStorage.removeItem('notesqu_token');
   }
   useEffect(() => {
     if (token) {
